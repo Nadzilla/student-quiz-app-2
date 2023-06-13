@@ -13,7 +13,10 @@
     
     <div *ngIf="status === 'loaded'">
         <div *ngIf="currentQuestion === 0">
-            <app-start-quiz (clickStart)="nextQuestion()"></app-start-quiz>
+            <app-start-quiz 
+                [quiz]="quiz" 
+                (clickStart)="nextQuestion()">
+            </app-start-quiz>
         </div>
         
         <div *ngIf="currentQuestion > 0">

@@ -28,9 +28,7 @@ export class QuizComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private quizService: QuizService) {
-      
-    }
+    private quizService: QuizService) {}
 
   ngOnInit(): void {
     this.quizService.getQuiz(CLASS_ID, QUIZ_ID).subscribe({
@@ -45,7 +43,7 @@ export class QuizComponent {
       },
       complete: () => {
         this.status = 'loaded';
-        this.questionSubmittedSubscription();
+        // this.questionSubmittedSubscription();
         // this.setQuestion();
       }
     })
@@ -96,25 +94,6 @@ export class QuizComponent {
     if (this.currentQuestion < this.quiz.questions.length) {
       this.nextButtonText = 'Next';
     }
-  }
-
-  questionSubmittedSubscription(): void {
-    this.quizService.questionSubmitted$.subscribe(val => {
-
-
-      // let index = null;
-      // this.quiz.questions.forEach((question, i) => {
-      //   if (question.questionId === val.questionId) {
-      //     index = i;
-      //   }
-      // });
-      // if (index !== null) {
-      //   this.quiz.questions[index] = val;
-      // }
-      console.log('val', val)
-      console.log('quiz', this.quiz)
-    });
-    
   }
 
   onOutletLoaded(component: QuestionComponent | ResultsComponent) {

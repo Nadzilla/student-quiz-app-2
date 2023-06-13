@@ -8,9 +8,6 @@ import { BIO_QUESTION_1, Question, Quiz, QUIZ_1, QUIZ_1_SIMPLE, SimpleQuiz } fro
 })
 export class QuizService {
 
-  questionSubmitted = new Subject<Question>();
-  questionSubmitted$ = this.questionSubmitted.asObservable();
-  
   constructor() { }
 
   // currentOpenQuiz: Quiz;

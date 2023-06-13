@@ -67,7 +67,6 @@ export class QuestionComponent {
       this.showError = false;
       this.disabled = this.question._questionSubmitted = true;
       this.questionFormGroup.get('selectedAnswer')?.disable();
-      this.quizService.questionSubmitted.next(this.question);
     }
 
   }
