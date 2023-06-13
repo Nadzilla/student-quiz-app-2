@@ -41,7 +41,7 @@ export class QuestionComponent {
 
   buildFormGroup(): void {
     this.questionFormGroup = new FormGroup({
-      selectedAnswer: new FormControl({value: this.question?.selectedAnswerId ? this.question?.selectedAnswerId : null, disabled: this.question.questionSubmitted}, Validators.required)
+      selectedAnswer: new FormControl({value: this.question?.selectedAnswerId ? this.question?.selectedAnswerId : null, disabled: this.question._questionSubmitted ? this.question._questionSubmitted  : false}, Validators.required)
     })
   }
 
@@ -53,7 +53,7 @@ export class QuestionComponent {
 
   getQuestionFromQuiz(param: string): void {
     this.question = this.quizService.getQuestionFromQuiz(this.quiz, param);
-    this.disabled = this.question?.questionSubmitted ? this.question?.questionSubmitted : false;
+    this.disabled = this.question?._questionSubmitted ? this.question?._questionSubmitted : false;
     this.buildFormGroup();
     this.subscribeToAnswerChanges();
   }
@@ -65,7 +65,7 @@ export class QuestionComponent {
       this.showError = true;
     } else {
       this.showError = false;
-      this.disabled = this.question.questionSubmitted = true;
+      this.disabled = this.question._questionSubmitted = true;
       this.questionFormGroup.get('selectedAnswer')?.disable();
       this.quizService.questionSubmitted.next(this.question);
     }

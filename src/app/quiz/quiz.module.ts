@@ -6,6 +6,7 @@ import { ResultsComponent } from './results/results.component';
 import { StartQuizComponent } from './start-quiz/start-quiz.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ConvertToLetter } from './question/convertToLetter.pipe';
 
 
 const routes = [
@@ -22,7 +23,8 @@ const routes = [
     QuizComponent,
     QuestionComponent,
     ResultsComponent,
-    StartQuizComponent
+    StartQuizComponent,
+    ConvertToLetter
   ],
   imports: [
     CommonModule,

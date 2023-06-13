@@ -14,3 +14,19 @@
     text-align: center;
     display: inline-block;
 }
+
+.form-check-input {
+    margin-right: 12px;
+}
+
+.answer-feedback {
+    font-weight: 700;
+    &__correct {
+        color: darkgreen;
+    }
+    
+    &__incorrect {
+        color: red;
+    }
+}
+

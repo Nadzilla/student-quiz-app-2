@@ -17,7 +17,7 @@ export interface Question {
     choices: Array<Choice>;
     selectedAnswerId: string | null;
     correctAnswerId: string;
-    questionSubmitted: boolean;
+    _questionSubmitted?: boolean;
 }
 
 export interface Choice {
@@ -32,7 +32,6 @@ export const BIO_QUESTION_1: Question =  {
     questionText: 'During photosynthesis',
     correctAnswerId: '2',
     selectedAnswerId: null,
-    questionSubmitted: false,
     choices: [
         {
             choiceId: '1',
@@ -58,7 +57,6 @@ export const BIO_QUESTION_2: Question =  {
     questionText: 'Which of the following describes the major difference between bryophytes and tracheophytes ?',
     correctAnswerId: '4',
     selectedAnswerId: null,
-    questionSubmitted: false,
     choices: [
         {
             choiceId: '1',
@@ -84,7 +82,6 @@ export const BIO_QUESTION_3: Question =  {
     questionText: 'The myofilaments of muscles consist primarily of two proteins. These two proteins are called:',
     correctAnswerId: '1',
     selectedAnswerId: null,
-    questionSubmitted: false,
     choices: [
         {
             choiceId: '1',
@@ -105,10 +102,39 @@ export const BIO_QUESTION_3: Question =  {
     ]
 }
 
+export const BIO_QUESTION_4: Question =  {
+    questionId: '4',
+    questionText: 'All the following receptors are coupled to Gi proteins except:',
+    correctAnswerId: '4',
+    selectedAnswerId: null,
+    choices: [
+        {
+            choiceId: '1',
+            choiceText: 'α2',
+        },
+        {
+            choiceId: '2',
+            choiceText: 'M2',
+        },
+        {
+            choiceId: '3',
+            choiceText: 'M4',
+        },
+        {
+            choiceId: '4',
+            choiceText: 'β2',
+        },
+        {
+            choiceId: '5',
+            choiceText: 'None of the above',
+        }
+    ]
+}
+
 export const QUIZ_1: Quiz = {
     quizId: '1',
     name: 'Biology 102 Quiz',
-    questions: [BIO_QUESTION_1, BIO_QUESTION_2, BIO_QUESTION_3]
+    questions: [BIO_QUESTION_1, BIO_QUESTION_2, BIO_QUESTION_3, BIO_QUESTION_4]
 }
 
 export const QUIZ_1_SIMPLE: SimpleQuiz = {

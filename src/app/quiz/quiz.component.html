@@ -21,7 +21,7 @@
             <router-outlet (activate)="onOutletLoaded($event)"></router-outlet>
             <ng-container>
                 <button class="btn btn-secondary" (click)="previousQuestion()">Back</button>
-                <button *ngIf="currentQuestion <= quiz.questions.length" class="btn btn-primary" (click)="nextQuestion()" [disabled]="quiz.questions[currentQuestion-1].questionSubmitted === false"> {{ nextButtonText }} </button>
+                <button *ngIf="currentQuestion <= quiz.questions.length" class="btn btn-primary" (click)="nextQuestion()" [disabled]="quiz.questions[currentQuestion-1]._questionSubmitted === false"> {{ nextButtonText }} </button>
             </ng-container>
         </div>    
     </div>

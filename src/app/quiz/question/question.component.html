@@ -6,13 +6,12 @@
         <div *ngFor="let choice of question.choices; let i = index">
             <input class="form-check-input" type="radio" formControlName="selectedAnswer" [id]="choice.choiceId" [value]="choice.choiceId">
             <label class="form-check-label" [for]="choice.choiceId">
-                {{i + 1}}. {{ choice.choiceText }}  
-                
+                {{i + 1 | convertToLetter }}. {{ choice.choiceText }}  
               </label>
-              <ng-container *ngIf="disabled">
-                <span *ngIf="choice.choiceId === question.correctAnswerId"> - This is the Correct Answer</span>
-                <span *ngIf="choice.choiceId === question.selectedAnswerId && choice.choiceId !== question.correctAnswerId"> - You choose an incorrect Answer</span>
-            </ng-container>
+              <span class="answer-feedback" *ngIf="disabled">
+                <span class="answer-feedback__correct" *ngIf="choice.choiceId === question.correctAnswerId"> - This is the Correct Answer</span>
+                <span class="answer-feedback__incorrect" *ngIf="choice.choiceId === question.selectedAnswerId && choice.choiceId !== question.correctAnswerId"> - You choose an incorrect Answer</span>
+              </span>
         </div>
     </div>
 </form>
@@ -20,6 +19,15 @@
     <div *ngIf="showError" class="alert alert-danger alert-width" role="alert">
         You did not select an Answer!
     </div>
+    <ng-container *ngIf="disabled">
+        <div *ngIf="question.selectedAnswerId === question.correctAnswerId" class="alert alert-success alert-width" role="alert">
+            Correct Answer!
+        </div>  
+        <div *ngIf="question.selectedAnswerId !== question.correctAnswerId" class="alert alert-danger alert-width" role="alert">
+            Incorrect Answer. The Correct Answer is displayed above.
+        </div>    
+    </ng-container>
+   
     <br>
     <button class="btn btn-primary" (click)="submitAnswer()" [disabled]="disabled">Submit Answer</button>
 </div>

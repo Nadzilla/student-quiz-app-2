@@ -36,6 +36,9 @@ export class QuizComponent {
     this.quizService.getQuiz(CLASS_ID, QUIZ_ID).subscribe({
       next: (res) => {
         this.quiz = res;
+        this.quiz.questions.map(question => {
+          question._questionSubmitted = false;
+        })
       },
       error: (err) => {
         this.status = 'error';
