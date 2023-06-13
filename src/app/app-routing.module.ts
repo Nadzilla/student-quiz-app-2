@@ -7,7 +7,10 @@ import { QuizComponent } from './quiz/quiz.component';
 import { ResultsComponent } from './quiz/results/results.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent}
+  { path: '', component: HomeComponent},
+  { path: 'quiz', 
+    loadChildren: () => import('./quiz/quiz.module').then(m => m.QuizModule)
+  }
 ];
 
 @NgModule({

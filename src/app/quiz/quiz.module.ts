@@ -10,7 +10,7 @@ import { ConvertToLetter } from './question/convertToLetter.pipe';
 
 
 const routes = [
-  { path: 'quiz', component: QuizComponent, children: [
+  { path: '', component: QuizComponent, children: [
     {path: 'results', component: ResultsComponent},
     {path: ':id', component: QuestionComponent},
   ]}
