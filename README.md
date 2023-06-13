@@ -12,3 +12,10 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 - Custom Pipes
 - Routing (with nested modules)
 - Lazy Loading
+
+## This quiz features:
+- Have to answer each question before moving on to the next one
+- Once you submit an answer, you cannot change your answer
+- Cannot highlight questions or choices in order to make it more difficult for the student to cheat
+- Feedback is provided after submitting the answer
+- Results page to view score

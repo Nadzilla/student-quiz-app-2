@@ -1,34 +1,40 @@
 
-<h3> Question: {{ question.questionText }}</h3>
+<div class="question-container">
+    <h3 class="question-container__text-unhighlight"> Question: {{ question.questionText }}</h3>
 
-<form [formGroup]="questionFormGroup">
-    <div class="answer-choices">
-        <div *ngFor="let choice of question.choices; let i = index">
-            <input class="form-check-input" type="radio" formControlName="selectedAnswer" [id]="choice.choiceId" [value]="choice.choiceId">
-            <label class="form-check-label" [for]="choice.choiceId">
-                {{i + 1 | convertToLetter }}. {{ choice.choiceText }}  
-              </label>
-              <span class="answer-feedback" *ngIf="disabled">
-                <span class="answer-feedback__correct" *ngIf="choice.choiceId === question.correctAnswerId"> - This is the Correct Answer</span>
-                <span class="answer-feedback__incorrect" *ngIf="choice.choiceId === question.selectedAnswerId && choice.choiceId !== question.correctAnswerId"> - You choose an incorrect Answer</span>
-              </span>
+    <form [formGroup]="questionFormGroup">
+        <div class="question-container__answer-choices">
+            <div *ngFor="let choice of question.choices; let i = index">
+                <input class="question-container__input form-check-input" type="radio" formControlName="selectedAnswer" [id]="choice.choiceId" [value]="choice.choiceId">
+                <label [for]="choice.choiceId">
+                    <span class="question-container__text-unhighlight">
+                        {{i + 1 | convertToLetter }}. {{ choice.choiceText }}  
+                    </span>
+                  </label>
+                  <span class="question-container__answer-feedback" *ngIf="disabled">
+                    <span class="question-container__answer-feedback__correct" *ngIf="choice.choiceId === question.correctAnswerId"> - This is the Correct Answer</span>
+                    <span class="question-container__answer-feedback__incorrect" *ngIf="choice.choiceId === question.selectedAnswerId && choice.choiceId !== question.correctAnswerId"> - You choose an incorrect Answer</span>
+                  </span>
+            </div>
         </div>
+    </form>
+    
+    <div class="question-container__footer">
+        <div *ngIf="showError" class="alert alert-danger question-container__footer__alert-width" role="alert">
+            You did not select an Answer!
+        </div>
+        <ng-container *ngIf="disabled">
+            <div *ngIf="question.selectedAnswerId === question.correctAnswerId" class="alert alert-success question-container__footer__alert-width" role="alert">
+                Correct Answer!
+            </div>  
+            <div *ngIf="question.selectedAnswerId !== question.correctAnswerId" class="alert alert-danger question-container__footer__alert-width" role="alert">
+                Incorrect Answer. The Correct Answer is displayed above.
+            </div>    
+        </ng-container>
+       
+        <br>
+        <button class="btn btn-primary" (click)="submitAnswer()" [disabled]="disabled">Submit Answer</button>
     </div>
-</form>
-<div class="submit-button">
-    <div *ngIf="showError" class="alert alert-danger alert-width" role="alert">
-        You did not select an Answer!
-    </div>
-    <ng-container *ngIf="disabled">
-        <div *ngIf="question.selectedAnswerId === question.correctAnswerId" class="alert alert-success alert-width" role="alert">
-            Correct Answer!
-        </div>  
-        <div *ngIf="question.selectedAnswerId !== question.correctAnswerId" class="alert alert-danger alert-width" role="alert">
-            Incorrect Answer. The Correct Answer is displayed above.
-        </div>    
-    </ng-container>
-   
-    <br>
-    <button class="btn btn-primary" (click)="submitAnswer()" [disabled]="disabled">Submit Answer</button>
+    
 </div>
 
