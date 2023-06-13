@@ -1,0 +1,26 @@
+
+<h3> Question: {{ question.questionText }}</h3>
+
+<form [formGroup]="questionFormGroup">
+    <div class="answer-choices">
+        <div *ngFor="let choice of question.choices; let i = index">
+            <input class="form-check-input" type="radio" formControlName="selectedAnswer" [id]="choice.choiceId" [value]="choice.choiceId">
+            <label class="form-check-label" [for]="choice.choiceId">
+                {{i + 1}}. {{ choice.choiceText }}  
+                
+              </label>
+              <ng-container *ngIf="disabled">
+                <span *ngIf="choice.choiceId === question.correctAnswerId"> - This is the Correct Answer</span>
+                <span *ngIf="choice.choiceId === question.selectedAnswerId && choice.choiceId !== question.correctAnswerId"> - You choose an incorrect Answer</span>
+            </ng-container>
+        </div>
+    </div>
+</form>
+<div class="submit-button">
+    <div *ngIf="showError" class="alert alert-danger alert-width" role="alert">
+        You did not select an Answer!
+    </div>
+    <br>
+    <button class="btn btn-primary" (click)="submitAnswer()" [disabled]="disabled">Submit Answer</button>
+</div>
+

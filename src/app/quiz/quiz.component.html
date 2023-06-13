@@ -1,0 +1,29 @@
+<div class="quiz-container">
+    <h1>Quiz 1: Bio 102 - Introduction</h1>
+
+    <div *ngIf="status === 'error'">
+        <!-- <ngb-alert type="danger" [dismissible]="false">There was an error loading the Quiz</ngb-alert> -->
+    </div>
+    
+    <div *ngIf="status === 'loading'">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+    </div>
+    
+    <div *ngIf="status === 'loaded'">
+        <div *ngIf="currentQuestion === 0">
+            <app-start-quiz (clickStart)="nextQuestion()"></app-start-quiz>
+        </div>
+        
+        <div *ngIf="currentQuestion > 0">
+            <span *ngIf="currentQuestion <= quiz.questions.length">  Question: {{ currentQuestion }} / {{quiz.questions.length}} </span>
+            <router-outlet (activate)="onOutletLoaded($event)"></router-outlet>
+            <ng-container>
+                <button class="btn btn-secondary" (click)="previousQuestion()">Back</button>
+                <button *ngIf="currentQuestion <= quiz.questions.length" class="btn btn-primary" (click)="nextQuestion()" [disabled]="quiz.questions[currentQuestion-1].questionSubmitted === false"> {{ nextButtonText }} </button>
+            </ng-container>
+        </div>    
+    </div>
+</div>
+
